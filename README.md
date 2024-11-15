@@ -1,2 +1,2 @@
 # introjs
-Taccount introjs
+account introjs
