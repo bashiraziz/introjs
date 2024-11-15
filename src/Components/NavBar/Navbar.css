@@ -1,0 +1,14 @@
+.ant-layout-header {
+  background-color: #ffffff !important;
+  border-bottom: 0.1px #e2e8f0 solid !important;
+}
+.navbar {
+  display: flex;
+  justify-content: flex-start;
+  height: 100%;
+  align-items: center;
+}
+.navbar h2{
+  margin-top: 15px;
+  padding: 0 10px;
+}

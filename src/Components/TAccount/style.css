@@ -1,0 +1,181 @@
+.t-wrapper {
+  width: 430px;
+  margin: 0 auto;
+  /* height:300px; */
+  padding-right: 24px;
+}
+.t-account {
+  display: flex;
+}
+.t-account .t-account-debet {
+  width: 100%;
+  border-bottom: 2px solid black;
+  padding: 4px 0;
+}
+.t-account .t-account-credit {
+  width: 50%;
+  border-bottom: 2px solid black;
+  padding: 4px 0px;
+}
+.t-account .t-account-credit .ant-input {
+  border: none;
+  border-color: none;
+  background-color: #f1f5f9 !important;
+}
+
+.t-account .t-account-credit .ant-input:hover {
+  border-color: none;
+  box-shadow: none;
+  background-color: #f1f5f9 !important;
+}
+.t-account .t-account-credit .ant-input:focus,
+.ant-input-focused {
+  border-color: none;
+  box-shadow: none;
+  background-color: #f1f5f9 !important;
+}
+
+/* .t-account .t-account-debet select{
+    width: 80%; 
+}
+.t-account .t-account-credit select{
+    width: 80%; 
+} */
+.t-debet-credit-wrapper {
+  display: flex;
+  max-height: 100%;
+}
+.t-debet-credit-wrapper .t-debet {
+  width: 50%;
+  padding: 4px 0px;
+  border-right: 2px solid black;
+}
+
+.t-debet-credit-wrapper .t-credit {
+  width: 50%;
+  padding: 4px 0px;
+}
+
+.ant-select {
+  width: 100% !important;
+}
+
+.total-cr {
+  height: 75px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.total-cr .ant-input-number {
+  background-color: #f1f5f9 !important;
+  border: none;
+  border-top: 1px solid #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
+  margin-right: 2px;
+  width: 55%;
+}
+.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  background-color: #f1f5f9 !important;
+  border: none;
+}
+.ant-input-number {
+  border: none;
+  background-color: #f1f5f9 !important;
+}
+
+.ant-select-focus {
+  border: none;
+  border-color: none;
+}
+.ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input)
+  .ant-select-selector {
+  border-color: none;
+  box-shadow: none;
+  background-color: #f1f5f9 !important;
+}
+.ant-select:not(.ant-select-disabled):hover .ant-select-selector {
+  background-color: #f1f5f9 !important;
+  border-color: none;
+}
+.ant-input-number-handler-wrap{
+    display: none;
+    border-color: none;
+}
+.ant-space .ant-space-item .ant-input-number {
+  border-color: none;
+  box-shadow: none;
+  background-color: #f1f5f9 !important;
+}
+.t-debet .balance-cr .ant-space .ant-space-item .ant-input-number {
+  border-bottom: 1px solid rgb(0 0 0 / 85%);
+  border-top: 1px solid rgb(0 0 0 / 85%);
+  background-color: #f1f5f9 !important;
+}
+.t-credit .balance-cr .ant-space .ant-space-item .ant-input-number {
+  border-bottom: 1px solid rgb(0 0 0 / 85%);
+  border-top: 1px solid rgb(0 0 0 / 85%);
+  background-color: #f1f5f9 !important;
+}
+.t-debet .balance-cr .ant-input {
+  width: 45%;
+  border: none;
+  background-color: #f1f5f9 !important;
+}
+.t-debet .balance-cr .ant-input:hover,
+.ant-input:focus {
+  border-color: none;
+  box-shadow: none;
+  background-color: #f1f5f9 !important;
+}
+.t-credit .balance-cr .ant-input {
+  width: 45%;
+  border: none;
+  background-color: #f1f5f9 !important;
+}
+.t-credit .balance-cr .ant-input:hover,
+.ant-input:focus {
+  border-color: none;
+  box-shadow: none;
+  background-color: #f1f5f9 !important;
+}
+/* divider */
+.divider {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  background-color: #f1f5f9 !important;
+}
+.divider .ant-divider-horizontal {
+  width: 55%;
+  min-width: 55%;
+  background-color: #f1f5f9 !important;
+}
+.divider .ant-divider {
+  border-top: 1px solid rgb(0 0 0 / 85%);
+  background-color: #f1f5f9 !important;
+}
+/* dr */
+
+.total-dr {
+  height: 75px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.total-dr .ant-input-number {
+  border: none;
+  border-top: 1px solid #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
+  background-color: #f1f5f9 !important;
+  width: 55%;
+}
+.ant-input-number:hover {
+  border-color: none;
+  box-shadow: none;
+}
+.ant-input-number-focused {
+  border-color: none;
+  box-shadow: none;
+  background-color: #f1f5f9 !important;
+}

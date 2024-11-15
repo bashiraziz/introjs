@@ -1,0 +1,58 @@
+.t-debet-inner{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    grid-gap: 5px;
+    margin: 6px 0;
+}
+.t-debet-inner .label{
+    width: 26%;
+}
+
+.t-debet-inner .RS{
+    width: 55%;
+}
+.add-icon{
+    width: 15px;
+    padding: 0 2px;
+    margin: 0 6px;
+}
+
+.ant-space .ant-space-item .ant-input-number{
+    width: 100%;
+}
+
+.balance-cr{
+    padding-top: 20px;
+}
+
+.balance-cr input {
+    font-weight: bold;
+}
+
+.balance-cr .ant-input[disabled]{
+    width: 45%;
+    border-color: none !important;
+    box-shadow: none;
+}
+.balance-cr .ant-space{
+    width: 55%;
+}
+
+.ant-input-number-input{
+text-align: right !important;
+padding: 0 !important;
+}
+
+.ant-space .ant-space-item .ant-input-number{
+    border-color: none;
+box-shadow: none;
+}
+
+.ant-select-single:not(.ant-select-customize-input) .ant-select-selector{
+    padding: 0 4px !important;
+}
+
+.ant-input-number-input-wrap {
+    padding: 0 5px !important;
+}

@@ -1,0 +1,159 @@
+.ant-layout-content {
+  background-color: white !important;
+}
+.ant-btn-primary {
+  background-color: green !important;
+  border-color: green;
+  border-radius: 5px;
+}
+.ant-btn-primary:hover {
+  background-color: rgba(0, 128, 0, 0.836) !important;
+}
+.ant-modal-footer .ant-btn {
+  border-radius: 5px !important;
+}
+.ant-modal-footer .ant-btn:hover {
+  background-color: #575bca !important;
+  color: #ffff;
+}
+.ant-modal-title {
+  color: #94a3b8 !important;
+  font-weight: 600 !important;
+}
+
+.ant-layout-sider-trigger {
+  max-width: 186px !important;
+}
+
+/* make header responsive */
+.sidebar-collapsed {
+  min-width: auto !important;
+  max-width: 80px !important;
+}
+
+.sidebar-expanded {
+  z-index: 10 !important;
+}
+.customTooltip {
+  max-width: 300px;
+  min-width: 200px;
+}
+
+.customHighlight {
+  z-index: 999999 !important;
+}
+/* Dashboard.css */
+.site-layout-background {
+  background: #fff;
+}
+
+.site-layout {
+  min-height: 100vh;
+}
+
+.sidebar-expanded {
+  min-width: 200px !important;
+  max-width: 200px !important;
+}
+
+.sidebar-collapsed {
+  min-width: 80px !important;
+  max-width: 80px !important;
+}
+
+/* Dashboard.css */
+.site-layout-background {
+  background: #fff;
+}
+
+.site-layout {
+  min-height: 100vh;
+}
+
+.sidebar-expanded {
+  min-width: 200px !important;
+  max-width: 200px !important;
+}
+
+.sidebar-collapsed {
+  min-width: 80px !important;
+  max-width: 80px !important;
+}
+
+/* Intro.js custom styles */
+.custom-tooltip {
+  max-width: 300px;
+  min-width: 200px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.custom-tooltip .introjs-tooltiptext {
+  padding: 16px;
+  color: #333;
+}
+
+.custom-tooltip .introjs-tooltipbuttons {
+  padding: 12px;
+  border-top: 1px solid #eee;
+}
+
+.custom-highlight {
+  border-radius: 4px;
+  box-shadow: 0 0 0 4px rgba(24, 144, 255, 0.2);
+}
+
+.introjs-helperLayer {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+}
+
+/* Tooltip styling */
+.custom-tooltip {
+  max-width: 400px;
+  min-width: 250px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.custom-tooltip .introjs-tooltiptext {
+  padding: 16px;
+  color: #333;
+  font-size: 14px;
+}
+
+.custom-tooltip .introjs-tooltipbuttons {
+  padding: 12px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.custom-tooltip .introjs-button {
+  background-color: #4caf50; /* Primary green color */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.custom-tooltip .introjs-button:hover {
+  background-color: #45a049;
+}
+
+.custom-highlight {
+  border-radius: 4px;
+  box-shadow: 0 0 0 4px rgba(24, 144, 255, 0.2);
+}
+
+.introjs-helperLayer {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+}

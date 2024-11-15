@@ -1,0 +1,39 @@
+.feedback-page {
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+}
+
+.feedback-heading {
+    margin-bottom: 0 !important;
+    text-align: center;
+}
+
+.feedback-sub-title {
+    text-align: center;
+}
+
+.ant-form-vertical .ant-form-item-label>label {
+    font-weight: 600;
+}
+
+.ant-form-item-label>label.ant-form-item-required:before {
+    content: unset;
+}
+
+.ant-form-item-label>label.ant-form-item-required::after {
+    display: inline-block;
+    margin-right: 4px;
+    color: #ff4d4f;
+    font-size: 14px;
+    font-family: SimSun, sans-serif;
+    line-height: 1;
+    content: '*';
+}
+
+.send-message-btn {
+    border-radius: 25px !important;
+}
+
+.ant-input {
+    background: #F9F9F9;
+}
