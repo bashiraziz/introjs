@@ -23,13 +23,14 @@ import "antd/dist/antd.css";
 const { Header, Content, Sider } = Layout;
 
 const DashboardContent = () => {
-  const [collapsed, setCollapsed] = useState(false);
-  const location = useLocation();
-  const navigate = useNavigate();
+  const [collapsed, setCollapsed] = useState(false); // State to toggle sidebar collapsed/expanded
+  const location = useLocation(); // Tracks the current route
+  const navigate = useNavigate(); // Allows programmatic navigation
 
   useEffect(() => {
     const intro = introJs();
 
+    // Function to scroll specific elements into view during the intro.js tour
     const ensureElementVisible = (elementId) => {
       const element = document.getElementById(elementId);
       if (element) {
@@ -37,6 +38,7 @@ const DashboardContent = () => {
       }
     };
 
+    // Configure the intro.js tour steps and behavior
     intro.setOptions({
       steps: [
         {
@@ -52,6 +54,7 @@ const DashboardContent = () => {
           scrollTo: "tooltip",
           scrollPadding: 20,
           beforeChange: () => {
+            // Ensure the correct menu item is visible and navigate to its route
             ensureElementVisible(`sidebar-${item.id}`);
             if (location.pathname !== item.href) {
               navigate(item.href);
@@ -59,7 +62,7 @@ const DashboardContent = () => {
           },
         })),
         {
-          element: document.querySelector(".add-taccount-btn"),
+          element: document.querySelector(".add-taccount-btn"), // Custom step for 'Add TAccount' button
           title: "Add New TAccount",
           intro: "Click here to add a new TAccount to your dashboard.",
           position: "left",
@@ -73,15 +76,16 @@ const DashboardContent = () => {
       ],
       tooltipClass: "custom-tooltip",
       highlightClass: "custom-highlight",
-      exitOnOverlayClick: false,
-      showStepNumbers: true,
+      exitOnOverlayClick: false, // Prevent exiting the tour when clicking outside
+      showStepNumbers: true, // Display step numbers in the tour
       keyboardNavigation: true,
       showBullets: true,
       hidePrev: true,
       hideNext: true,
-      showProgress: false, // No progress bar
+      showProgress: false, // Disable progress bar display
     });
 
+    // Customize the "Done" button for the last step
     intro.onafterchange(() => {
       const tooltip = document.querySelector(".introjs-tooltipbuttons");
       if (tooltip) {
@@ -102,24 +106,28 @@ const DashboardContent = () => {
       }
     });
 
-    intro.start();
+    intro.start(); // Start the tour when the component mounts
 
-    // Cleanup on unmount
+    // Cleanup on component unmount
     return () => intro.exit();
   }, []);
+
   return (
     <Layout>
+      {/* Sidebar Layout */}
       <Sider
         className={`site-layout-background ${
           collapsed ? "sidebar-collapsed" : "sidebar-expanded"
         }`}
         breakpoint="md"
         collapsible
-        collapsed={collapsed}
-        onCollapse={() => setCollapsed(!collapsed)}
+        collapsed={collapsed} // Sidebar state
+        onCollapse={() => setCollapsed(!collapsed)} // Toggle sidebar collapse
       >
         <Sidebar />
       </Sider>
+
+      {/* Main Content Layout */}
       <Layout className="site-layout">
         <Header className="site-layout-background">
           <Navbar />
@@ -130,9 +138,10 @@ const DashboardContent = () => {
             margin: 0,
             minHeight: 280,
             maxHeight: "100vh",
-            overflow: "auto",
+            overflow: "auto", // Enables scrolling for large content
           }}
         >
+          {/* Define Routes for each page */}
           <Routes>
             <Route exact path="/" element={<TAccount />} />
             <Route exact path="/trial-balance" element={<TrialBalance />} />

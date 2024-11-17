@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Layout, Menu } from "antd";
+import { Menu } from "antd";
 import {
   AccountBookOutlined,
   DollarCircleOutlined,
@@ -10,6 +10,7 @@ import {
 import "./Sidebar.css";
 import "antd/dist/antd.css";
 
+// Define menu items with properties like label, path, and icons
 export const menuItems = [
   {
     label: "T-Accounts",
@@ -47,26 +48,23 @@ export const menuItems = [
 ];
 
 const Sidebar = () => {
-  const [current, setCurrent] = useState("");
+  const [current, setCurrent] = useState(""); // Tracks the currently selected menu item
 
   return (
     <div className="side-bar">
       <Menu
         theme="dark"
         mode="inline"
-        onClick={(e) => setCurrent(e.key)}
-        selectedKeys={[current]}
+        onClick={(e) => setCurrent(e.key)} // Updates selected menu item on click
+        selectedKeys={[current]} // Highlights the active menu item
       >
         <div className="logo" />
         {menuItems.map((menuItem, i) => {
-          const classes = [];
-          const isActive = menuItem.href === window.location.pathname;
-          isActive && classes.push("active");
-
+          const isActive = menuItem.href === window.location.pathname; // Check if the current path matches menu item
           return (
             <Menu.Item
               key={String(i)}
-              className={`${classes.join(" ")} intro-${menuItem.id}`}
+              className={`${isActive ? "active" : ""} intro-${menuItem.id}`} // Adds 'active' class if the menu item is selected
               id={`sidebar-${menuItem.id}`}
               data-intro={menuItem.introData.description}
               data-title={menuItem.introData.title}

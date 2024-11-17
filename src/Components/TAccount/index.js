@@ -6,172 +6,123 @@ import { PlusOutlined } from "@ant-design/icons";
 import EntryDr from "./component/entry";
 import "./style.css";
 import "antd/dist/antd.css";
-import { useAppDispatch, useAppState } from '../../Context/AppContext';
+import { useAppDispatch, useAppState } from "../../Context/AppContext";
 
-const listAccountName = ChartOfAccounts
-  
-    
-const labelData = [
-  // {
-  //   id: uuidv4(),
-  //   label: "A",
-  // },
-];
+const listAccountName = ChartOfAccounts;
+
+// Generate label data from A-Z (ASCII values 65-90)
+const labelData = [];
 for (let i = 65; i < 90; i++) {
   var str = String.fromCharCode(i);
-  labelData.push(str)
+  labelData.push(str);
 }
-
 
 const TAccount = ({ item, index }) => {
   const { Option } = Select;
-
   const { dispatch } = useAppDispatch();
   const { mainTaccount } = useAppState();
 
   const [items, setItems] = useState(listAccountName);
   const [name, setName] = useState("");
-  const [focusEntry, setFocusEntry] = useState({ type: 'debet', index: 0 })
-
+  const [focusEntry, setFocusEntry] = useState({ type: "debet", index: 0 });
 
   const onNameChange = (event) => {
-    setName(event.target.value);
+    setName(event.target.value); // Update account name state
   };
 
   const addItem = (e) => {
     e.preventDefault();
-    if (!name.trim()) return
+    if (!name.trim()) return; // Ensure account name is not empty
     setItems([
       ...items,
       { id: uuidv4(), AccountName: name } || `New item ${uuidv4()}`,
     ]);
-    setName("");
+    setName(""); // Reset input field
   };
 
-
-  // onchange dr
-
+  // Update Debit entry amount
   const onChangeDr = async (value, i, key) => {
     mainTaccount[index].entryDr[key].amountDebet = value;
 
+    // Calculate total Debit amount
     const sum = mainTaccount[index].entryDr.reduce((accumulator, object) => {
       return accumulator + object.amountDebet;
     }, 0);
     mainTaccount[index].totalDr = sum;
-    await dispatch({ type: 'ADD_ENTRY_CR', payload: mainTaccount });
 
-  }
+    // Dispatch updated data
+    await dispatch({ type: "ADD_ENTRY_CR", payload: mainTaccount });
+  };
 
-  // onchange cr
-
+  // Update Credit entry amount
   const onChangeCr = async (value, i, key) => {
-
-
     mainTaccount[index].entryCr[key].amountCredit = value;
 
+    // Calculate total Credit amount
     const sum = mainTaccount[index].entryCr.reduce((accumulator, object) => {
       return accumulator + object.amountCredit;
     }, 0);
     mainTaccount[index].totalCr = sum;
-    await dispatch({ type: 'ADD_ENTRY_CR', payload: mainTaccount });
 
-    // const entries =addEntryCr.filter((item)=>item.id!==i)
-    // let entry =addEntryCr.find((item)=>item.id==i)
-    // entry.amountDebet=value;
-    // entries.push(entry);
-    // setAddEntryCr(entries);
-
-    //  const sum = entries.reduce((accumulator, object) => {
-    //   return accumulator + object.amountDebet;
-    // }, 0);
-    // setTotalCr(sum);
-
-  }
-
-  // debet
-  const onAddEntry = async (id) => {
-    mainTaccount[index].entryDr.push(
-      {
-        id: uuidv4(),
-        label: '',
-        amountDebet: null,
-      }
-    )
-    // const entry = mainTaccount.find(item => item.id === id)
-    //   console.log(entry,'tryarr');
-    //  if(entry){
-
-    //   let newEntryDr=[]
-    //   let newTAccounts = mainTaccount.filter((item)=>item.id!==id);
-    //   console.log(newTAccounts,'newT');
-    //   if(entry.entryDr && entry?.entryDr?.length>0){
-    //     newEntryDr=[...entry.entryDr,{
-    //           id: uuidv4(),
-    //           label: '',
-    //           amountDebet: 0,  
-    //       }];
-    //   }
-    //   else{
-    //     newEntryDr=[{
-    //           id: uuidv4(),
-    //           label: '',
-    //           amountDebet: 0,  
-    //       }];
-    //   }
-    //   entry.entryDr=newEntryDr;
-
-    //   let alltaccounts=[...newTAccounts,
-    //     entry]
-    await dispatch({ type: 'ADD_ENTRY_DR', payload: mainTaccount });
-
-    // }
-
+    // Dispatch updated data
+    await dispatch({ type: "ADD_ENTRY_CR", payload: mainTaccount });
   };
 
-  //  on add entry credit
+  // Add new Debit entry
+  const onAddEntry = async (id) => {
+    mainTaccount[index].entryDr.push({
+      id: uuidv4(),
+      label: "",
+      amountDebet: null,
+    });
+
+    // Dispatch updated data
+    await dispatch({ type: "ADD_ENTRY_DR", payload: mainTaccount });
+  };
+
+  // Add new Credit entry
   const onAddEntryCr = async (id) => {
+    mainTaccount[index].entryCr.push({
+      id: uuidv4(),
+      label: "",
+      amountCredit: null,
+    });
 
-    mainTaccount[index].entryCr.push(
-      {
-        id: uuidv4(),
-        label: '',
-        amountCredit: null,
-      }
-    )
-    await dispatch({ type: 'ADD_ENTRY_CR', payload: mainTaccount });
-  }
+    // Dispatch updated data
+    await dispatch({ type: "ADD_ENTRY_CR", payload: mainTaccount });
+  };
 
+  // Add both Debit and Credit entries, focusing on the first empty entry
   const onAdd = async (entryType) => {
-    await onAddEntryCr()
-    await onAddEntry()
+    await onAddEntryCr();
+    await onAddEntry();
 
-    // check for the first empty entry index that we need to focus
-    let focusEntryIndex = entryType === "debet"
-      ? item.entryDr.findIndex(entry => entry.amountDebet === null)
-      : item.entryCr.findIndex(entry => entry.amountCredit === null)
+    // Determine which entry type (Debit or Credit) to focus on
+    let focusEntryIndex =
+      entryType === "debet"
+        ? item.entryDr.findIndex((entry) => entry.amountDebet === null)
+        : item.entryCr.findIndex((entry) => entry.amountCredit === null);
 
-    setFocusEntry({ type: entryType, index: focusEntryIndex })
-  }
+    setFocusEntry({ type: entryType, index: focusEntryIndex });
+  };
 
-
-  // on change label cr
+  // Update Credit entry label
   const onChangeLabelCr = async (value, key) => {
     mainTaccount[index].entryCr[key].label = value;
-    await dispatch({ type: 'ADD_ENTRY_CR', payload: mainTaccount });
-  }
+    await dispatch({ type: "ADD_ENTRY_CR", payload: mainTaccount });
+  };
 
-  // on change label dr
+  // Update Debit entry label
   const onChangeLabelDr = async (value, key) => {
     mainTaccount[index].entryDr[key].label = value;
-    await dispatch({ type: 'ADD_ENTRY_CR', payload: mainTaccount });
-  }
+    await dispatch({ type: "ADD_ENTRY_CR", payload: mainTaccount });
+  };
 
-  // account name
-
+  // Update Account name
   const onChangeAccount = async (value) => {
     mainTaccount[index].title = value;
-    await dispatch({ type: 'ADD_ENTRY_CR', payload: mainTaccount });
-  }
+    await dispatch({ type: "ADD_ENTRY_CR", payload: mainTaccount });
+  };
 
   return (
     <div className="t-wrapper">
@@ -181,7 +132,7 @@ const TAccount = ({ item, index }) => {
             style={{ width: 300 }}
             placeholder="Select an account name"
             onChange={onChangeAccount}
-            value={!!item.title ? item.title: undefined}
+            value={!!item.title ? item.title : undefined}
             allowClear
             dropdownRender={(menu) => (
               <>
@@ -210,16 +161,11 @@ const TAccount = ({ item, index }) => {
             ))}
           </Select>
         </div>
-        {/* <div className="t-account-credit">
-          <Space align="center" style={{ padding: "0 8px 4px" }}>
-            <Input onChange={onNameChange} />
-          </Space>
-        </div> */}
       </div>
       <div className="t-debet-credit-wrapper">
         <div className="t-debet">
+          {/* Render Debit entries */}
           {item.entryDr.map((entry, index) => (
-
             <EntryDr
               key={index}
               index={index}
@@ -235,7 +181,7 @@ const TAccount = ({ item, index }) => {
               focusEntry={focusEntry}
             />
           ))}
-
+          {/* Display Total Debit */}
           <div className="total-cr">
             <InputNumber
               size="small"
@@ -250,11 +196,16 @@ const TAccount = ({ item, index }) => {
               readOnly={true}
             />
           </div>
+          {/* Display Debit Balance */}
           <div className="balance-cr">
-            <Input value="Balance" readOnly/>
+            <Input value="Balance" readOnly />
             <Space>
               <InputNumber
-                value={(mainTaccount[index].totalDr > mainTaccount[index].totalCr) ? mainTaccount[index].totalDr - mainTaccount[index].totalCr : ''}
+                value={
+                  mainTaccount[index].totalDr > mainTaccount[index].totalCr
+                    ? mainTaccount[index].totalDr - mainTaccount[index].totalCr
+                    : ""
+                }
                 formatter={(value) =>
                   ` ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                 }
@@ -271,6 +222,7 @@ const TAccount = ({ item, index }) => {
           </div>
         </div>
         <div className="t-credit">
+          {/* Render Credit entries */}
           {item.entryCr.map((entry, index) => (
             <EntryDr
               key={index}
@@ -287,6 +239,7 @@ const TAccount = ({ item, index }) => {
               focusEntry={focusEntry}
             />
           ))}
+          {/* Display Total Credit */}
           <div className="total-dr">
             <InputNumber
               size="small"
@@ -301,11 +254,16 @@ const TAccount = ({ item, index }) => {
               readOnly={true}
             />
           </div>
+          {/* Display Credit Balance */}
           <div className="balance-cr">
-            <Input value="Balance" readOnly/>
+            <Input value="Balance" readOnly />
             <Space>
               <InputNumber
-                value={(mainTaccount[index].totalCr > mainTaccount[index].totalDr) ? mainTaccount[index].totalCr - mainTaccount[index].totalDr : ''}
+                value={
+                  mainTaccount[index].totalCr > mainTaccount[index].totalDr
+                    ? mainTaccount[index].totalCr - mainTaccount[index].totalDr
+                    : ""
+                }
                 formatter={(value) =>
                   ` ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                 }
@@ -317,12 +275,10 @@ const TAccount = ({ item, index }) => {
               />
             </Space>
           </div>
-          <div className="divider">
-            <Divider style={{ margin: "4px 0" }} />
-          </div>
         </div>
       </div>
     </div>
   );
 };
+
 export default TAccount;
