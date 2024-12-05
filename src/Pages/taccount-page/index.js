@@ -24,7 +24,7 @@ const TAccountPage = () => {
       <div className="Events-container">
         <div className="Events-header">
           <Button type="primary" onClick={addTees} className="add-taccount-btn">
-            <PlusOutlined /> Add TAccountsss
+            <PlusOutlined /> Add a T Account
           </Button>
         </div>
         <List
