@@ -140,7 +140,7 @@ const TAccount = ({ item, index }) => {
                 <Divider style={{ margin: "8px 0" }} />
                 <Space align="center" style={{ padding: "0 8px 4px" }}>
                   <Input
-                    placeholder="User Defined"
+                    placeholder="User Definedme"
                     value={name}
                     onChange={onNameChange}
                   />
